@@ -11,6 +11,7 @@ import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'
 import { LogsComponent } from './logs/logs.component';
+import { ContributorsComponent } from './contributors/contributors.component';
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 
 @NgModule({
@@ -21,7 +22,8 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     GraphsComponent,
     UsersComponent,
     CanvasJSChart,
-    LogsComponent
+    LogsComponent,
+    ContributorsComponent
   ],
   imports: [
     BrowserModule,
