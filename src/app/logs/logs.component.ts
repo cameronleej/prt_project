@@ -39,7 +39,7 @@ export class LogsComponent  {
         }
     );
   }
-  
+
 
 }
 
@@ -59,7 +59,7 @@ export class Data{
     average: number;
     max: number;
     min: number;
-  
+
     constructor(average: number, max: number, min: number){
       this.average = average;
       this.max = max;

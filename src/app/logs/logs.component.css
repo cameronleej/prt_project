@@ -9,7 +9,7 @@ table, th {
   padding: 5px;
   table-layout: fixed;
   column-width: 5vw;
-  width: 30vw;
+  width: 200px;
   margin-left: 4.75vw;
 }
 
@@ -48,6 +48,10 @@ td{
 
 .logs-container {
   margin-top: 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .space {
