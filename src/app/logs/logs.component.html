@@ -8,15 +8,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let part of Table">
-                <td>{{part.date}}</td>
-                <td>{{part.time}}</td>
-                <td>{{part.voltage}}</td>
+            <tr *ngFor="let cap of captureService.captures">
+                <td>{{cap.date}}</td>
+                <td>{{cap.time}}</td>
+                <td>{{cap.voltage}}</td>
             </tr>
         </tbody>
     </table>
     <br>
-    <table>
+    <!-- <table>
         <thead>
             <tr>
                 <th>Average</th>
@@ -25,11 +25,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let data of Avg">
+            <tr *ngFor="">
                 <td>{{data.average}}</td>
                 <td>{{data.max}}</td>
                 <td>{{data.min}}</td>
             </tr>
         </tbody>
-    </table>
+    </table> -->
 </div>
