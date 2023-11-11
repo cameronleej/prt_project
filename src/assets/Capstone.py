@@ -25,7 +25,7 @@ i = 0;
 fields = ['date', 'time', 'voltage']
 filename = "cvs_test1.csv"
 
-client = pymongo.MongoClient("mongodb://username:password@localhost:27017/")
+client = pymongo.MongoClient("mongodb://localhost:27017/PRTdb")
 db = client["mydatabase"]
 collection = db["mycollection"]
 
