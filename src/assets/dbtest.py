@@ -1,6 +1,14 @@
-
 from datetime import datetime
 from pymongo import MongoClient
+import random
+import time
+
+#placeholder function to generate random voltage data
+#param base_voltage is the placeholder target voltage that should be read
+#param range is the fluctuation range of the base voltage
+#return the randomly generated voltage placeholder value
+def capture_voltage(base_voltage, range):
+    return base_voltage * random.uniform(*range)
 
 
 connection_string = "mongodb+srv://prt-user:prt-password@prtdb.iubfrp0.mongodb.net/"
@@ -16,26 +24,31 @@ collection = database['captures']
 #get current date/time
 current_datetime = datetime.now()
 
+#insert data
 
-#inserted data field
-data = {
+while True:
+      
+    data = {
     #formatted as MM/DD/YYYY
     "date": current_datetime.strftime("%m/%d/%Y"),
 
     #formatted as HH:MM
     "time": current_datetime.strftime("%H:%M"),
 
-    "voltage": 7.493843943984
+    #capture voltage using base, and fluctuation range
+    "voltage": capture_voltage(5,(0.5,3))
 
-}
+    }
 
-#insert data
-result = collection.insert_one(data)
+    print(data)
 
-
-print("Inserted document ID:", result.inserted_id)
-print("Inserted data:", data)
+    #insert data as collection to mongodb
+    result = collection.insert_one(data)
+    print("Inserted document ID:", result.inserted_id)
+    print("Inserted data:", data)
+    time.sleep(30)
 
 
 #close connection
 client.close()
+
