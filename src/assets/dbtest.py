@@ -36,7 +36,7 @@ while True:
     "time": current_datetime.strftime("%H:%M"),
 
     #capture voltage using base, and fluctuation range
-    "voltage": capture_voltage(5,(0.5,3))
+    "voltage": round(capture_voltage(5,(0.5,3)),4)
 
     }
 

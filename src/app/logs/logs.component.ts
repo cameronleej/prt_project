@@ -17,8 +17,11 @@ export class LogsComponent implements OnInit  {
 
 
   ngOnInit(){
+    //this will call the function to get all of the captures
     this.refreshCaptureList();
-    //throw new Error('Method not implemented.');
+    
+    //this will refresh the data automatically every 5 seconds
+    setInterval(() => this.refreshCaptureList(),5000);
   }
 
   refreshCaptureList() {
