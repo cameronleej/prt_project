@@ -4,6 +4,9 @@ import { HttpClient } from "@angular/common/http";
 import { CaptureService } from '../models/capture.service'
 import { Capture } from '../models/capture.model'
 
+declare var avg: number;
+declare var min: number;
+declare var max: number;
 
 @Component({
   selector: 'app-logs',
@@ -11,6 +14,7 @@ import { Capture } from '../models/capture.model'
   styleUrls: [ './logs.component.css' ],
   providers: [CaptureService]
 })
+
 export class LogsComponent implements OnInit  {
 
   constructor(public captureService: CaptureService){ }
@@ -27,7 +31,24 @@ export class LogsComponent implements OnInit  {
   refreshCaptureList() {
     this.captureService.getCaptureList().subscribe((res) => {
       this.captureService.captures = res as Capture[];
+
     });
+
+  }
+
+  getAverage(caps: Capture[]): void{
+    for (let i = 0; i < caps.length; i++) {
+      
+      
+    }
+  }
+
+  getMin(){
+
+  }
+
+  getMax(){
+
   }
 }
 //OLD CODE
