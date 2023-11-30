@@ -4,9 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { CaptureService } from '../models/capture.service'
 import { Capture } from '../models/capture.model'
 
-declare var avg: number;
-declare var min: number;
-declare var max: number;
+
 
 @Component({
   selector: 'app-logs',
@@ -16,6 +14,9 @@ declare var max: number;
 })
 
 export class LogsComponent implements OnInit  {
+  avg!: number;
+  min!: number;
+  max!: number;
 
   constructor(public captureService: CaptureService){ }
 
@@ -31,25 +32,63 @@ export class LogsComponent implements OnInit  {
   refreshCaptureList() {
     this.captureService.getCaptureList().subscribe((res) => {
       this.captureService.captures = res as Capture[];
-
+      this.avg = getAverage(this.captureService.captures);
+      this.min = getMin(this.captureService.captures);
+      this.max = getMax(this.captureService.captures);
     });
 
   }
 
-  getAverage(caps: Capture[]): void{
-    for (let i = 0; i < caps.length; i++) {
-      
-      
+  
+}
+
+function getAverage(caps: Capture[]): number{
+  let total = 0;
+
+  if(caps == undefined){
+    return 0;
+  }
+
+  for (let i = 0; i < caps.length; i++) {
+    total += caps[i].voltage;
+  }
+  return total/caps.length;
+}
+
+function getMin(caps: Capture[]): number{
+
+  if(caps == undefined){
+    return 0;
+  }
+  let min = caps[0].voltage;
+
+  for (let i = 1; i < caps.length; i++) {
+    
+    if(caps[i].voltage < min){
+      min = caps[i].voltage;
     }
+    
   }
 
-  getMin(){
+  return min;
+}
 
+function getMax(caps: Capture[]): number{
+  
+  if(caps == undefined){
+    return 0;
+  }
+  let max = caps[0].voltage;
+
+  for (let i = 1; i < caps.length; i++) {
+    
+    if(caps[i].voltage > max){
+      max = caps[i].voltage;
+    }
+    
   }
 
-  getMax(){
-
-  }
+  return max;
 }
 //OLD CODE
 ////////////////////////
