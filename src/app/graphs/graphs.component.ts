@@ -1,17 +1,25 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {CaptureService} from "../models/capture.service";
+import { Capture } from '../models/capture.model'
 
 @Component({
   selector: 'app-graphs',
   templateUrl: './graphs.component.html',
-  styleUrls: ['./graphs.component.css']
+  styleUrls: ['./graphs.component.css'],
+  providers: [CaptureService]
 })
 export class GraphsComponent implements AfterViewInit{
   chart: any;
   dataPoints: any = [];
   showChart: Boolean = false;
+  captures: Capture[] = [];
 
-  constructor(private http: HttpClient) { }
+  ngAfterViewInit() {
+    this.refreshCaptureList();
+  }
+
+  constructor(public captureService: CaptureService) { }
 
   chartOptions = {
     animationEnabled: true,
@@ -38,20 +46,16 @@ export class GraphsComponent implements AfterViewInit{
     this.chart = chart;
   }
 
-  ngAfterViewInit() {
-    this.http
-      .get('/assets/cvs_test1.csv', {
-        responseType: 'text',
-      })
-      .subscribe((response: any) => {
-        let csvRowData = response.split(/[\r?\n|\r|\n]+/);
-        csvRowData.forEach((rowData: any, index: number) => {
-          if (index === 0) return;
-          var data = rowData.split(',');
-          this.dataPoints.push({ label: data[1], y: parseFloat(data[2]) });
-        });
-        this.dataPoints.pop();
-        this.showChart = true;
-      });
+  refreshCaptureList() {
+    this.captureService.getCaptureList().subscribe((res) => {
+      this.captureService.captures = res as Capture[];
+      this.captures = this.captureService.captures;
+
+    for (let cap of this.captures) {
+        this.dataPoints.push({label: cap.time, y: cap.voltage});
+      }
+    this.dataPoints.pop();
+    this.showChart = true;
+    });
   }
 }
