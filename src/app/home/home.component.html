@@ -9,19 +9,19 @@
     <div class = "text-container">
         <div class = "text-1">
             Paving the way for future improvements on WVU's favorite mode of transportation!
-            This project’s purpose is to (hypothetically) record, process, and display the electrical power 
-            that the Personal Rapid Transport (PRT) system uses. This is the first of hopefully many similar projects at 
-            West Virginia University that will build upon each other and reach a point of consistent PRT monitoring that is easily available
-            on a simple user interface. For the scope of this first iteration, this lovely user interface was created to present some previously captured test bed data.
-            With options to view the data in both log and graph format, the user interface also has some work-in progress features such as profile features,
-            and viewing data by time-frame, that will be more useful when the project is built upon and is active on a wider scale.
+            This project’s purpose is to record, process, and display the electrical power 
+            that the Personal Rapid Transport (PRT) system uses. For the first iteration, the user interface was created to present some previously captured test bed data. This iteration 
+            displays data fetched from the cloud database, with options to view the data in both log and graph format.
+            This project is meant to be build upon, and this interation was intended to lay the groundwork of the web application stack,
+            and database data flow models so that they will be set up for working hardware in the future.
         </div>
         <div class="text-2">
             A modular Raspberry Pi 4 Model B microcontroller equipped with a sensor suited to measure the PRT's power is the basis of all
-            that is to come. In this first iteration, the focus was on a testbed that lays the foundation for this ultimate goal. A PWM ciruit
-            used in conjunction with an ADC on the RPi simulated the RPi collecting analog voltage data. Python programs on the RPi generated
-            this data through the PWM circuit, collected the data through the ADC, stored it in a .csv file, and analyzed the contents of that .csv file.
-            The results of this program were then saved as assets on the web-based user interface for viewing!
+            that is to come. In the first iteration, the focus was on a testbed that lays the foundation for this ultimate goal. A PWM ciruit
+            used in conjunction with an ADC on the RPi simulated the RPi collecting analog voltage data. In this iteration, Python scripts are stored within a Docker container, and wirelessly 
+            accessed through SSH and executed on the RaspberryPi from the host machine. 
+            This Python script generates data that is then sent to the MongoDB Atlas database, and this data is accessed 
+            from this MEAN stack web application to view and analyze.
         </div>
     </div>
 </div>
