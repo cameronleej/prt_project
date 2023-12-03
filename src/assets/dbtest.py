@@ -19,15 +19,12 @@ client = MongoClient(connection_string)
 database = client['test']
 collection = database['captures']
 
-
-
-#get current date/time
-current_datetime = datetime.now()
-
 #insert data
 
 while True:
-      
+    #get current date/time
+    current_datetime = datetime.now()
+    
     data = {
     #formatted as MM/DD/YYYY
     "date": current_datetime.strftime("%m/%d/%Y"),
@@ -46,9 +43,8 @@ while True:
     result = collection.insert_one(data)
     print("Inserted document ID:", result.inserted_id)
     print("Inserted data:", data)
-    time.sleep(30)
+    time.sleep(10)
 
 
 #close connection
 client.close()
-
